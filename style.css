@@ -5,4 +5,16 @@ body {
 }
 a {
     color: #e67e22;
+    
+}
+h2 {
+    color: #e67e22;
+    font-size: 2em;
+    margin-top: 20px;
+}
+.logo {
+    width: 300px; /* Ancho fijo */
+    height: auto; /* Altura proporcional */
+    display: block; /* Para centrarlo fácilmente */
+    margin: 0 auto; /* Centra horizontalmente */
 }
