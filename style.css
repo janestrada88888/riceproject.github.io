@@ -18,3 +18,139 @@ h2 {
     display: block; /* Para centrarlo fácilmente */
     margin: 0 auto; /* Centra horizontalmente */
 }
+.indice {
+    background-color: #fdebd0;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 500px;
+}
+
+.indice ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.indice li {
+    margin: 10px 0;
+}
+
+.seccion {
+    margin: 40px 0;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+.main-title {
+  font-size: 3.5rem; /* Antes: 5rem */
+  color: #e67e22;
+  margin-bottom: 0;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+}
+
+.counter {
+  font-size: 2.5em;
+  color: #e67e22;
+  font-weight: bold;
+  margin: 10px 0;
+  background: #f8f1e5;
+  display: inline-block;
+  padding: 0 30px;
+  border-radius: 15px;
+  margin: 10px 0;
+  color: #d35400;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.counter-subtitle {
+  font-style: italic;
+  color: #666;
+  margin-top: 5px;
+}
+
+/* Efecto de animación al actualizar */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.5); }
+  100% { transform: scale(1); }
+}
+
+.counter-update {
+  animation: pulse 0.5s ease-in-out;
+}
+
+
+/* ====================== */
+/* ESTILOS PARA LA BARRA  */
+/* ====================== */
+.rice-tracker {
+  margin: 40px auto;
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.rice-tube {
+  width: 60%;         /* O el ancho que prefieras */
+  height: 30px;
+  background: #f5e5d0; /* Color del tubo vacío */
+  border-radius: 15px;
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
+  display: block;
+}
+
+.rice-fill {
+  height: 100%;
+  background: #e67e22; /* Color del relleno */
+  border-radius: 15px 0 0 15px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transition: width 0.5s ease-out;
+}
+
+.rice-grains {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="10" viewBox="0 0 20 10"><path d="M5,5 Q7.5,0 10,5 T15,5" fill="none" stroke="%23ffffff" stroke-width="0.8" opacity="0.7"/></svg>');
+  background-size: 20px 10px;
+}
+
+.tracker-labels {
+  display: flex;
+  justify-content: space-between;
+  color: #e67e22;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+  .rice-tube {
+    height: 20px;
+  }
+}
+.barra-img {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+}
+.packets-section {
+  margin-top: 40px;
+  text-align: center;
+}
+.rice-sack {
+  width: 120px;
+  height: auto;
+  margin: 10px 0;
+}
