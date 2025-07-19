@@ -107,13 +107,15 @@ h2 {
 }
 
 .rice-fill {
+  width: 0;
   height: 100%;
-  background: #e67e22; /* Color del relleno */
+  background: #e67e22;
   border-radius: 15px 0 0 15px;
   position: absolute;
   left: 0;
   top: 0;
   transition: width 0.5s ease-out;
+  z-index: 2; /* Añade esto */
 }
 
 .rice-grains {
@@ -124,6 +126,7 @@ h2 {
   width: 100%;
   background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="10" viewBox="0 0 20 10"><path d="M5,5 Q7.5,0 10,5 T15,5" fill="none" stroke="%23ffffff" stroke-width="0.8" opacity="0.7"/></svg>');
   background-size: 20px 10px;
+  z-index: 1; /* Añade esto */
 }
 
 .tracker-labels {

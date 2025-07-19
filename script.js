@@ -18,8 +18,9 @@ function actualizarProyecto() {
 
 // Animación del contador numérico
 function actualizarContador() {
+  const counter = document.getElementById('riceGrainCounter');
   // Granos de arroz
-  document.getElementById('riceGrainCounter').textContent = seguidores.toLocaleString();
+  counter.textContent = seguidores.toLocaleString();
 
   // Paquetes de arroz (entero, sin decimales)
   const paquetes = Math.floor(seguidores / 1000);
@@ -37,39 +38,41 @@ function actualizarContador() {
 // Animación de la barra de progreso
 function actualizarBarra() {
   const fill = document.getElementById('riceFill');
-  const left = Math.floor(seguidores / 1000) * 1000;
-  const right = left + 1000;
+  // Calcula el rango dinámico
+  const left = Math.floor(seguidores / meta) * meta;
+  const right = left + meta;
 
+  // Actualiza los labels de los extremos
   document.getElementById('leftLabel').textContent = left.toLocaleString();
   document.getElementById('rightLabel').textContent = right.toLocaleString();
 
-  const porcentaje = ((seguidores - left) / 1000) * 100;
+  // Porcentaje de relleno respecto al rango actual
+  const porcentaje = ((seguidores - left) / meta) * 100;
   fill.style.width = `${Math.min(Math.max(porcentaje, 0), 100)}%`;
 }
 
 // Efecto visual de granos de arroz (opcional)
 function actualizarGranos() {
   const grains = document.getElementById('riceGrains');
-  const left = Math.floor(seguidores / 1000) * 1000;
-  const porcentaje = Math.min(Math.max((seguidores - left) / 1000, 0), 1);
+  const porcentaje = seguidores / meta;
   grains.style.opacity = `${0.3 + (porcentaje * 0.7)}`;
 }
 
 // ==========================================
-// INICIALIZACIÓN Y EJEMPLO
+// INICIALIZACIÓN
 // ==========================================
 
 // Ejecuta al cargar la página
 document.addEventListener('DOMContentLoaded', () => {
   actualizarProyecto();
   
-  // SIMULACIÓN (borrar en producción)
+  // Para pruebas puedes descomentar esto:
+  /*
   setInterval(() => {
-    if (seguidores < 1500) { // Límite para la demo
+    if (seguidores < 1500) {
       seguidores += 1;
       actualizarProyecto();
     }
   }, 2000);
+  */
 });
-
-
