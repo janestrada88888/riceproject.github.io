@@ -1,9 +1,41 @@
 // ==========================================
 // CONFIGURACIÓN INICIAL
 // ==========================================
-let seguidores = 305; // Cambia este valor por tu número actual de seguidores
+let seguidores = 1900; // ← SOLO cambia este número cuando actualices
 const meta = 1000;     // Número de seguidores para llenar completamente la barra
 let animacionActiva = true; // Cambia a false si quieres desactivar las animaciones
+
+// ==========================================
+// SISTEMA AUTOMÁTICO DE MEMORIA Y CONTADOR
+// ==========================================
+
+// Función para obtener datos guardados (seguidores + número de cargas)
+function obtenerDatosGuardados() {
+  const urlHash = window.location.hash;
+  if (urlHash && urlHash.startsWith('#data=')) {
+    try {
+      const dataString = urlHash.replace('#data=', '');
+      const data = JSON.parse(decodeURIComponent(dataString));
+      console.log('📁 Datos encontrados:', data);
+      return data;
+    } catch (e) {
+      console.log('❌ Error leyendo datos guardados');
+    }
+  }
+  console.log('📁 No hay datos guardados (primera vez)');
+  return null; // null = primera vez
+}
+
+// Función para guardar datos (seguidores + contador de cargas)
+function guardarDatos(numeroCargas) {
+  const data = {
+    seguidores: seguidores,
+    cargas: numeroCargas,
+    fecha: new Date().toISOString()
+  };
+  window.location.hash = `data=${encodeURIComponent(JSON.stringify(data))}`;
+  console.log('💾 Datos guardados:', data);
+}
 
 // ==========================================
 // FUNCIONES PRINCIPALES
@@ -19,16 +51,54 @@ function actualizarProyecto() {
 // Animación del contador numérico
 function actualizarContador() {
   const counter = document.getElementById('riceGrainCounter');
-  // Granos de arroz
+  
+  // Obtiene los datos guardados
+  const datosGuardados = obtenerDatosGuardados();
+  
+  // Calcula el número de cargas
+  let numeroCargas;
+  let seguidoresAnteriores = null;
+  
+  if (datosGuardados === null) {
+    // Primera vez
+    numeroCargas = 1;
+    console.log('🆕 Carga #1 (primera vez)');
+  } else {
+    // No es primera vez
+    numeroCargas = datosGuardados.cargas + 1;
+    seguidoresAnteriores = datosGuardados.seguidores;
+    console.log(`🔄 Carga #${numeroCargas}`);
+    console.log(`📊 Seguidores anteriores: ${seguidoresAnteriores}`);
+  }
+  
+  // Actualiza contenido
   counter.textContent = seguidores.toLocaleString();
 
   // Paquetes de arroz (entero, sin decimales)
   const paquetes = Math.floor(seguidores / 1000);
   document.getElementById('ricePacketCounter').textContent = paquetes;
 
-  // Objetivo siguiente
+  // Objetivo siguiente (incluye número de carga)
   document.getElementById('nextGoal').textContent = `and counting! Next goal: ${seguidores + 1} grains`;
   
+  // LÓGICA DEL CONFETI
+  if (datosGuardados === null) {
+    // PRIMERA VEZ: siempre tira confeti
+    console.log('🎉 Carga #1: ¡CONFETI de bienvenida!');
+    lanzarConfeti();
+  } else if (seguidores > seguidoresAnteriores) {
+    // SIGUIENTES VECES: solo si aumentó
+    console.log(`🎉 Carga #${numeroCargas}: ¡Aumentó de ${seguidoresAnteriores} a ${seguidores}! ¡CONFETI!`);
+    lanzarConfeti();
+  } else if (seguidores === seguidoresAnteriores) {
+    console.log(`😐 Carga #${numeroCargas}: Mismo número (${seguidores}), sin confeti`);
+  } else {
+    console.log(`😞 Carga #${numeroCargas}: Bajó de ${seguidoresAnteriores} a ${seguidores}, sin confeti`);
+  }
+  
+  // Guarda los datos actualizados
+  guardarDatos(numeroCargas);
+
   if (animacionActiva) {
     counter.classList.add('counter-update');
     setTimeout(() => counter.classList.remove('counter-update'), 500);
@@ -58,21 +128,109 @@ function actualizarGranos() {
   grains.style.opacity = `${0.3 + (porcentaje * 0.7)}`;
 }
 
+// Función para lanzar confeti
+function lanzarConfeti() {
+  const confetti = document.getElementById('confetti');
+  confetti.innerHTML = '';
+  confetti.style.display = 'block';
+
+  // Crea 80 piezas de confeti
+  for (let i = 0; i < 500; i++) {
+    const piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    piece.style.left = Math.random() * 100 + 'vw';
+    piece.style.top = '-10px'; // Empieza arriba de la pantalla
+    piece.style.backgroundColor = `hsl(${Math.random()*360}, 100%, 50%)`;
+    piece.style.animationDuration = (2 + Math.random() * 1.5) + 's';
+    piece.style.animationDelay = (Math.random() * 0.5) + 's';
+    piece.style.width = (8 + Math.random() * 8) + 'px';
+    piece.style.height = piece.style.width;
+    piece.style.borderRadius = '50%';
+    confetti.appendChild(piece);
+  }
+
+  // Oculta el contenedor después de la animación
+  setTimeout(() => {
+    confetti.style.display = 'none';
+  }, 2500);
+}
+
+// ==========================================
+// FUNCIONES DE UTILIDAD
+// ==========================================
+
+// Función para resetear todo (volver a "primera vez")
+function empezarDeNuevo() {
+  window.location.hash = '';
+  console.log('🔄 Reseteado: próxima carga será #1');
+  location.reload();
+}
+
+// Función para ver estadísticas completas
+function verEstadisticas() {
+  const datos = obtenerDatosGuardados();
+  console.log('=== 📊 ESTADÍSTICAS ===');
+  
+  if (datos === null) {
+    console.log('Cargas realizadas: 0 (será la primera)');
+    console.log('Seguidores actuales:', seguidores);
+    console.log('Estado: 🆕 PRIMERA VEZ (habrá confeti)');
+  } else {
+    console.log(`Cargas realizadas: ${datos.cargas}`);
+    console.log(`Próxima carga será: #${datos.cargas + 1}`);
+    console.log('Seguidores actuales:', seguidores);
+    console.log('Seguidores anteriores:', datos.seguidores);
+    console.log('Última actualización:', new Date(datos.fecha).toLocaleString());
+    
+    if (seguidores > datos.seguidores) {
+      console.log('Estado: ⬆️ SUBIDA (habrá confeti)');
+    } else if (seguidores === datos.seguidores) {
+      console.log('Estado: ➡️ IGUAL (sin confeti)');
+    } else {
+      console.log('Estado: ⬇️ BAJADA (sin confeti)');
+    }
+  }
+  
+  return datos;
+}
+
+// Función para obtener solo el número de cargas
+function obtenerNumeroCargas() {
+  const datos = obtenerDatosGuardados();
+  const cargas = datos ? datos.cargas : 0;
+  console.log(`Total de cargas: ${cargas}`);
+  return cargas;
+}
+
 // ==========================================
 // INICIALIZACIÓN
 // ==========================================
 
 // Ejecuta al cargar la página
 document.addEventListener('DOMContentLoaded', () => {
+  console.log('=== 🚀 INICIO DE CARGA ===');
+  console.log('Seguidores configurados:', seguidores);
+  
+  // Muestra estadísticas antes de actualizar
+  verEstadisticas();
+  
+  // Actualiza todo (incluyendo confeti si corresponde)
   actualizarProyecto();
+  
+  console.log('=== ✅ CARGA COMPLETADA ===');
   
   // Para pruebas puedes descomentar esto:
   /*
   setInterval(() => {
     if (seguidores < 1500) {
-      seguidores += 1;
+      seguidores += 1; 
       actualizarProyecto();
     }
   }, 2000);
   */
 });
+
+// Funciones disponibles en consola
+window.empezarDeNuevo = empezarDeNuevo;
+window.verEstadisticas = verEstadisticas;
+window.obtenerNumeroCargas = obtenerNumeroCargas;
