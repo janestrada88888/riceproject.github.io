@@ -1,7 +1,7 @@
 // ==========================================
 // CONFIGURACIÓN INICIAL
 // ==========================================
-let seguidores = 1900; // ← SOLO cambia este número cuando actualices
+let seguidores = 2000; // ← SOLO cambia este número cuando actualices
 const meta = 1000;     // Número de seguidores para llenar completamente la barra
 let animacionActiva = true; // Cambia a false si quieres desactivar las animaciones
 
