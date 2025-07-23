@@ -487,3 +487,37 @@ h2 {
 .sidebar.active ~ .sidebar-overlay {
     display: block;
 }
+.sidebar-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0 0 0;
+}
+
+.sidebar-content ul li {
+    margin: 18px 0;
+    font-size: 1.15rem;
+    font-weight: 500;
+}
+
+.sidebar-content ul li a {
+    color: #e67e22;
+    text-decoration: none;
+    transition: color 0.2s;
+    padding: 6px 12px;
+    border-radius: 6px;
+    display: inline-block;
+}
+
+.sidebar-content ul li a:hover,
+.sidebar-content ul li a:focus {
+    background: #ffe5c2;
+    color: #b34700;
+    text-decoration: underline;
+}
+.sidebar-content h3 {
+    margin-top: 0;
+    margin-bottom: 18px;
+    font-size: 1.3rem;
+    color: #222;
+    font-weight: bold;
+}
