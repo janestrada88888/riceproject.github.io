@@ -243,6 +243,14 @@ h2 {
     background: linear-gradient(45deg, #4CAF50, #2E8B57);
 }
 
+.whatsapp-btn {
+    background: linear-gradient(45deg, #25D366, #128C7E);
+}
+
+.gmail-btn {
+    background: linear-gradient(45deg, #ea4335, #c5221f);
+}
+
 .btn-icon {
     font-size: 20px;
     margin-right: 10px;
