@@ -1,7 +1,7 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    background-color: #fff9f0;
+    background-color: #ffc062;
 }
 a {
     color: #e67e22;
@@ -631,4 +631,19 @@ h2 {
     height: 20px;
     object-fit: cover;
     border-radius: 2px;
+}
+.rice-piece {
+    position: absolute;
+    top: -40px;
+    animation: rice-fall 2.5s linear forwards;
+    pointer-events: none;
+    user-select: none;
+    opacity: 500;
+}
+
+@keyframes rice-fall {
+    to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0,7;
+    }
 }

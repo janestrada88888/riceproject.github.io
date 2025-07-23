@@ -416,27 +416,21 @@ function actualizarGranos() {
 // Función para lanzar confeti
 function lanzarConfeti() {
     const confetti = document.getElementById('confetti');
-    if (!confetti) return;
-    
     confetti.innerHTML = '';
     confetti.style.display = 'block';
 
-    // Crea 80 piezas de confeti
-    for (let i = 0; i < 500; i++) {
-        const piece = document.createElement('div');
-        piece.className = 'confetti-piece';
-        piece.style.left = Math.random() * 100 + 'vw';
-        piece.style.top = '-10px'; // Empieza arriba de la pantalla
-        piece.style.backgroundColor = `hsl(${Math.random()*360}, 100%, 50%)`;
-        piece.style.animationDuration = (2 + Math.random() * 1.5) + 's';
-        piece.style.animationDelay = (Math.random() * 0.5) + 's';
-        piece.style.width = (8 + Math.random() * 8) + 'px';
-        piece.style.height = piece.style.width;
-        piece.style.borderRadius = '50%';
-        confetti.appendChild(piece);
+    for (let i = 0; i < 800; i++) {
+        const rice = document.createElement('img');
+        rice.src = 'imatges/gradarros.png';
+        rice.className = 'rice-piece';
+        rice.style.left = Math.random() * 100 + 'vw';
+        rice.style.animationDelay = (Math.random() * 1.5) + 's';
+        rice.style.width = (Math.random() * 18 + 18) + 'px';
+        rice.style.height = 'auto';
+        rice.style.transform = `rotate(${Math.random() * 360}deg)`;
+        confetti.appendChild(rice);
     }
 
-    // Oculta el contenedor después de la animación
     setTimeout(() => {
         confetti.style.display = 'none';
     }, 2500);
