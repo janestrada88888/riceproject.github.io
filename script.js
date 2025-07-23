@@ -1,7 +1,7 @@
 // ==========================================
 // CONFIGURACIÓN INICIAL
 // ==========================================
-let seguidores = 2500; // ← SOLO cambia este número cuando actualices
+let seguidores = 2500; // ← SOLO cambia este número cuando actualizas
 const meta = 1000;     // Número de seguidores para llenar completamente la barra
 let animacionActiva = true; // Cambia a false si quieres desactivar las animaciones
 
@@ -262,40 +262,39 @@ document.getElementById('shareProjectBtn').addEventListener('click', function() 
         window.open(twitterUrl, '_blank');
     }
 });
+
 // Control del menú lateral
-document.querySelector('.sidebar-toggle').addEventListener('click', function() {
-    document.querySelector('.sidebar').classList.toggle('active');
-    document.querySelector('.main-content').classList.toggle('shifted');
-});
-
-// Cierra el menú lateral al hacer clic en cualquier enlace del menú
-document.querySelectorAll('.sidebar a').forEach(link => {
-    link.addEventListener('click', function() {
-        document.querySelector('.sidebar').classList.remove('active');
-        document.querySelector('.main-content').classList.remove('shifted');
-    });
-});
-
-document.querySelector('.sidebar-toggle').addEventListener('click', function() {
-    document.querySelector('.sidebar').classList.toggle('active');
-    document.querySelector('.main-content').classList.toggle('shifted');
-});
-
 document.addEventListener('DOMContentLoaded', function() {
     const sidebar = document.querySelector('.sidebar');
-    const toggleButton = document.querySelector('.sidebar-toggle');
+    const toggleBtn = document.querySelector('.sidebar-toggle');
+    const mainContent = document.querySelector('.main-content');
     
-    // Abre el sidebar si está cerrado
-    if (!sidebar.classList.contains('active')) {
-        sidebar.classList.add('active');
-        document.querySelector('.main-content').classList.add('shifted');
-    }
-    
-    // Cierra el sidebar al hacer clic fuera de él
-    document.addEventListener('click', function(event) {
-        if (!sidebar.contains(event.target) && !toggleButton.contains(event.target)) {
+    // Crear overlay
+    const overlay = document.createElement('div');
+    overlay.className = 'sidebar-overlay';
+    document.body.appendChild(overlay);
+
+    // Abrir/cerrar menú lateral
+    toggleBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        sidebar.classList.toggle('active');
+    });
+
+    // Cerrar menú al hacer clic en un enlace del menú
+    document.querySelectorAll('.sidebar a').forEach(link => {
+        link.addEventListener('click', function() {
             sidebar.classList.remove('active');
-            document.querySelector('.main-content').classList.remove('shifted');
+        });
+    });
+
+    // Cerrar menú al hacer clic en el overlay o en el contenido principal
+    overlay.addEventListener('click', function() {
+        sidebar.classList.remove('active');
+    });
+
+    document.addEventListener('click', function(e) {
+        if (!sidebar.contains(e.target) && e.target !== toggleBtn) {
+            sidebar.classList.remove('active');
         }
     });
 });
