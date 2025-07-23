@@ -498,15 +498,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Muestra estadísticas antes de actualizar
     verEstadisticas();
     
-    // Configuración del sistema de idiomas
-    const savedLang = localStorage.getItem('selectedLanguage');
+    // Mostrar modal sempre que s'entri
     const languageModal = document.getElementById('language-modal');
-    
-    // Mostrar modal solo si no hay idioma guardado
-    if (!savedLang && languageModal) {
+    if (languageModal) {
         languageModal.style.display = 'flex';
-    } else if (savedLang) {
-        applyLanguage(savedLang);
     }
     
     // Configurar botones de idioma del modal
