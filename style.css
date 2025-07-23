@@ -327,13 +327,14 @@ h2 {
 .rice-journey {
   text-align: center;
   padding: 40px 20px;
-  background-color: #f9f5e9;
+  /* background-color: #f9f5e9; */
   font-family: 'Arial', sans-serif;
 }
 
 .rice-journey h2 {
   color: #5B8C5A;
   margin-bottom: 40px;
+  font-size: 1.5rem;
 }
 
 .timeline {
@@ -410,4 +411,88 @@ h2 {
     margin-bottom: 30px;
   }
 }
+.action-btn .btn-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
 
+/* ====================== */
+/* ESTILOS DEL MENÚ LATERAL */
+/* ====================== */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 250px;
+    background-color: #fdebd0;
+    z-index: 1000;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+
+.sidebar.active {
+    transform: translateX(0);
+}
+
+.sidebar-toggle {
+    position: fixed;
+    left: 10px;
+    top: 10px;
+    background: #e67e22;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar li {
+    margin: 15px 0;
+}
+
+.sidebar a {
+    color: #d35400;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.sidebar a:hover {
+    color: #a04000;
+}
+
+.main-content {
+    margin-left: 0;
+    transition: margin-left 0.3s ease;
+}
+
+.main-content.shifted {
+    margin-left: 250px;
+}
+
+/* Para móviles */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+    }
+    
+    .main-content.shifted {
+        margin-left: 200px;
+    }
+}

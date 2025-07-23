@@ -262,3 +262,40 @@ document.getElementById('shareProjectBtn').addEventListener('click', function() 
         window.open(twitterUrl, '_blank');
     }
 });
+// Control del menú lateral
+document.querySelector('.sidebar-toggle').addEventListener('click', function() {
+    document.querySelector('.sidebar').classList.toggle('active');
+    document.querySelector('.main-content').classList.toggle('shifted');
+});
+
+// Cierra el menú lateral al hacer clic en cualquier enlace del menú
+document.querySelectorAll('.sidebar a').forEach(link => {
+    link.addEventListener('click', function() {
+        document.querySelector('.sidebar').classList.remove('active');
+        document.querySelector('.main-content').classList.remove('shifted');
+    });
+});
+
+document.querySelector('.sidebar-toggle').addEventListener('click', function() {
+    document.querySelector('.sidebar').classList.toggle('active');
+    document.querySelector('.main-content').classList.toggle('shifted');
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    const sidebar = document.querySelector('.sidebar');
+    const toggleButton = document.querySelector('.sidebar-toggle');
+    
+    // Abre el sidebar si está cerrado
+    if (!sidebar.classList.contains('active')) {
+        sidebar.classList.add('active');
+        document.querySelector('.main-content').classList.add('shifted');
+    }
+    
+    // Cierra el sidebar al hacer clic fuera de él
+    document.addEventListener('click', function(event) {
+        if (!sidebar.contains(event.target) && !toggleButton.contains(event.target)) {
+            sidebar.classList.remove('active');
+            document.querySelector('.main-content').classList.remove('shifted');
+        }
+    });
+});
