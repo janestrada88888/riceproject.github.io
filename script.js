@@ -234,3 +234,31 @@ document.addEventListener('DOMContentLoaded', () => {
 window.empezarDeNuevo = empezarDeNuevo;
 window.verEstadisticas = verEstadisticas;
 window.obtenerNumeroCargas = obtenerNumeroCargas;
+
+// Efecto: resalta el paso al pasar el ratón
+document.querySelectorAll('.step').forEach(step => {
+  step.addEventListener('mouseenter', () => {
+    step.style.transform = 'scale(1.05)';
+    step.querySelector('.step-icon').style.backgroundColor = '#F4E285';
+  });
+  step.addEventListener('mouseleave', () => {
+    step.style.transform = 'scale(1)';
+    step.querySelector('.step-icon').style.backgroundColor = 'white';
+  });
+});
+
+document.getElementById('shareProjectBtn').addEventListener('click', function() {
+    const shareText = "Join The Rice Grain Project! Each follower = 1 grain of rice. When we reach 1000 grains, we donate a bag of rice to food banks. Small actions create big changes.";
+    const shareUrl = window.location.href;
+    
+    if (navigator.share) {
+        navigator.share({
+            title: 'Rice Grain Project',
+            text: shareText,
+            url: shareUrl,
+        }).catch(err => console.log('Error sharing:', err));
+    } else {
+        const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
+        window.open(twitterUrl, '_blank');
+    }
+});

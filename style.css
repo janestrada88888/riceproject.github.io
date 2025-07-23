@@ -186,3 +186,228 @@ h2 {
     opacity: 0;
   }
 }
+.content-box {
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 25px;
+    margin: 25px auto;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    max-width: 900px;      /* Igual que las otras cajas */
+    width: 100%;           /* Ocupa todo el ancho posible hasta el máximo */
+    box-sizing: border-box;
+}
+
+.content-box h3 {
+    color: #2c3e50;
+    margin-top: 0;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 10px;
+}
+
+/* Estilos para los botones de acción */
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 30px 0;
+    flex-wrap: wrap;
+}
+
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 25px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    color: white;
+    border: none;
+    cursor: pointer;
+    min-width: 200px;
+}
+
+.action-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+
+.instagram-btn {
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+}
+
+.share-btn {
+    background: linear-gradient(45deg, #4CAF50, #2E8B57);
+}
+
+.btn-icon {
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.btn-text small {
+    font-weight: normal;
+    font-size: 12px;
+    display: block;
+}
+
+.impact-text {
+    text-align: center;
+    margin-top: 15px;
+    color: #666;
+    font-size: 14px;
+    font-style: italic;
+}
+.essence-section {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 30px;
+}
+
+.essence-section h2 {
+    color: #2c3e50;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.process-flow {
+    margin-top: 30px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.process-flow h3 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.process-step {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed #e0e0e0;
+}
+
+.process-step:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.step-icon {
+    font-size: 24px;
+    margin-right: 15px;
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+.step-content {
+    flex: 1;
+}
+
+.step-content strong {
+    color: #2c3e50;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.step-content p {
+    color: #666;
+    margin: 0;
+}
+.rice-journey {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #f9f5e9;
+  font-family: 'Arial', sans-serif;
+}
+
+.rice-journey h2 {
+  color: #5B8C5A;
+  margin-bottom: 40px;
+}
+
+.timeline {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 50px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: #F4E285;
+  z-index: 1;
+}
+
+.step {
+  width: 18%;
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  animation: fadeIn 0.5s forwards;
+}
+
+.step-icon {
+  font-size: 2.5rem;
+  background: white;
+  width: 60px;
+  height: 60px;
+  line-height: 60px;
+  border-radius: 50%;
+  margin: 0 auto 15px;
+  border: 4px solid #F4E285;
+  box-shadow: 0 0 0 8px #f9f5e9;
+  transition: background 0.3s;
+}
+
+.step h3 {
+  color: #5B8C5A;
+  margin-bottom: 10px;
+}
+
+.step p {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.step[data-step="1"] { animation-delay: 0.2s; }
+.step[data-step="2"] { animation-delay: 0.4s; }
+.step[data-step="3"] { animation-delay: 0.6s; }
+.step[data-step="4"] { animation-delay: 0.8s; }
+.step[data-step="5"] { animation-delay: 1s; }
+
+@media (max-width: 768px) {
+  .timeline {
+    flex-direction: column;
+    align-items: center;
+  }
+  .timeline::before {
+    display: none;
+  }
+  .step {
+    width: 80%;
+    margin-bottom: 30px;
+  }
+}
+
