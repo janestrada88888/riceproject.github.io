@@ -254,11 +254,11 @@ function addLanguageSelectorToMenu() {
     const languageSelector = document.createElement('div');
     languageSelector.className = 'language-selector-menu';
     languageSelector.innerHTML = `
-        <h4>Change language</h4>
+        <h4>Idioma /Language</h4>
         <div class="language-options-menu">
+            <button data-lang="ca"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Flag_of_Catalonia.svg/320px-Flag_of_Catalonia.svg.png" alt="Català"></button>
             <button data-lang="en"><img src="https://flagcdn.com/w20/gb.png" alt="English"></button>
             <button data-lang="es"><img src="https://flagcdn.com/w20/es.png" alt="Español"></button>
-            <button data-lang="ca"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Flag_of_Catalonia.svg/320px-Flag_of_Catalonia.svg.png" alt="Català"></button>
         </div>
     `;
     sidebarContent.appendChild(languageSelector);
@@ -268,6 +268,9 @@ function addLanguageSelectorToMenu() {
         btn.addEventListener('click', function() {
             const lang = this.getAttribute('data-lang');
             applyLanguage(lang);
+            // Cierra el menú lateral si está abierto
+            const sidebar = document.querySelector('.sidebar');
+            if (sidebar) sidebar.classList.remove('active');
         });
     });
 }
