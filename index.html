@@ -172,6 +172,27 @@
   <!-- Aquí se generarán los trozos de confeti -->
 </div>
 
+<button onclick="mostrarBizum()" style="background: #00a6eb; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+   Donar por Bizum
+</button>
+
+<div id="datosBizum" style="display: none; margin-top: 20px; padding: 15px; background: #e1f5fe; border: 1px solid #00a6eb; border-radius: 5px;">
+   <h3>Donar por Bizum</h3>
+   <p><strong>Número:</strong> +34 612 345 678</p>  <!-- ✏️ TU NÚMERO AQUÍ -->
+   <p><small>(Abre la app de tu banco y usa este número en Bizum)</small></p>
+</div>
+
+<script>
+   function mostrarBizum() {
+      const datos = document.getElementById("datosBizum");
+      if (datos.style.display === "none") {
+         datos.style.display = "block";
+      } else {
+         datos.style.display = "none";
+      }
+   }
+</script>
+
 <script src="script.js"></script>
 
 </body>
